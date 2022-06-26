@@ -11,13 +11,13 @@ namespace VALUEOBJECT.APPLICATION
                 return;
 
             Phone = phoneObject.Trim();
-            IsValid = Validate();
+            IsValid = Validates();
         }
 
         public string Phone { get; private set; } = string.Empty;
         public bool IsValid {get; private set; }
 
-        private bool Validate()
+        private bool Validates()
         {
             if (Phone.Length != 11)
                 return false;

@@ -13,7 +13,7 @@ namespace VALUEOBJECT.APPLICATION
 
             Document = documentObject.Trim();
 
-            if (!Validate())
+            if (!Validates())
                 return;
 
             if (Document.Length == 11)
@@ -37,7 +37,7 @@ namespace VALUEOBJECT.APPLICATION
         public bool IsValid { get; private set; }
         public EnumDocumentType EnumDocumentType { get; }
 
-        public bool Validate()
+        public bool Validates()
         {
             return Document.Length == 11 || Document.Length == 14;
         }
@@ -50,8 +50,8 @@ namespace VALUEOBJECT.APPLICATION
                 set
                 {
                     document = value;
-                    IsValid = Validate();
-                    ToFormat();
+                    IsValid = Validates();
+                    FormatsDocument();
                 }
             }
             public static string DocumentFormatted { get; private set; } = string.Empty;
@@ -59,11 +59,11 @@ namespace VALUEOBJECT.APPLICATION
 
             private static string document = string.Empty;
 
-            private static void ToFormat()
+            private static void FormatsDocument()
             {
                 DocumentFormatted = Document.Substring(0, 3) + "." + Document.Substring(3, 3) + "." + Document.Substring(6, 3) + "-" + Document.Substring(9, 2);
             }
-            private static bool Validate()
+            private static bool Validates()
             {
                 int[] validator1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
                 int[] validator2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -113,8 +113,8 @@ namespace VALUEOBJECT.APPLICATION
                 set
                 {
                     document = value;
-                    IsValid = Validate();
-                    ToFormat();
+                    IsValid = Validates();
+                    FormatsDocument();
                 }
             }
             public static string DocumentFormatted { get; private set; } = string.Empty;
@@ -122,11 +122,11 @@ namespace VALUEOBJECT.APPLICATION
 
             private static string document = string.Empty;
 
-            private static void ToFormat()
+            private static void FormatsDocument()
             {
                 DocumentFormatted = Document.Substring(0, 3) + "." + Document.Substring(3, 3) + "." + Document.Substring(6, 3) + "-" + Document.Substring(9, 2);
             }
-            private static bool Validate()
+            private static bool Validates()
             {
                 int[] validator1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
                 int[] validator2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
