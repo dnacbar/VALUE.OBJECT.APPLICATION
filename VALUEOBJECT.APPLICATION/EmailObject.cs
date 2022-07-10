@@ -3,19 +3,19 @@ using VALUEOBJECT.APPLICATION.INTERFACES;
 
 namespace VALUEOBJECT.APPLICATION
 {
-    public sealed class EmailObject : IEmail
+    public struct EmailObject : IEmail
     {
         public EmailObject(string emailObject)
         {
             if (!emailObject.IsFilled())
-                return; 
-
+                return;
+            
             Email = emailObject.Trim();
             IsValid = ValidateEmail();
         }
 
         public string Email { get; private set; } = string.Empty;
-        public bool IsValid { get; private set; }
+        public bool IsValid { get; private set; } = false;
 
         private bool ValidateEmail()
         {

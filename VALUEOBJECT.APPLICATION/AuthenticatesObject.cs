@@ -4,20 +4,21 @@ using VALUEOBJECT.APPLICATION.INTERFACES;
 
 namespace VALUEOBJECT.APPLICATION
 {
-    public sealed class AuthenticatesObject : IAuthenticatesObject
+    public struct AuthenticatesObject : IAuthenticatesObject
     {
         public AuthenticatesObject(IAuthentication authentication)
         {
             if (authentication.AuthenticationObject == null)
                 return;
 
+
             IsValid = authentication.IsValid;
         }
 
-        public bool IsValid { get; private set; }
+        public bool IsValid { get; private set; } = false;
     }
 
-    public sealed class PasswordAuthentication : IAuthentication
+    public struct PasswordAuthentication : IAuthentication
     {
         public PasswordAuthentication(string passwordObject, Regex regexObject)
         {
@@ -38,7 +39,7 @@ namespace VALUEOBJECT.APPLICATION
             }
         }
 
-        public bool IsValid { get; private set; }
+        public bool IsValid { get; private set; } = false;
 
         private Regex Regex { get; set; } = null!;
 
@@ -50,7 +51,7 @@ namespace VALUEOBJECT.APPLICATION
         }
     }
 
-    public sealed class NumericAuthentication : IAuthentication
+    public struct NumericAuthentication : IAuthentication
     {
         public NumericAuthentication(string numericObject = "000000")
         {
@@ -70,7 +71,7 @@ namespace VALUEOBJECT.APPLICATION
             }
         }
 
-        public bool IsValid { get; private set; }
+        public bool IsValid { get; private set; } = false;
 
         private string numeric = "00000";
 

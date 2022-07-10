@@ -4,14 +4,14 @@ using VALUEOBJECT.APPLICATION.INTERFACES;
 
 namespace VALUEOBJECT.APPLICATION
 {
-    public sealed class DocumentObject : IDocument
+    public struct DocumentObject : IDocument
     {
         public DocumentObject(string documentObject)
         {
-            if (!documentObject.IsFilled() || !documentObject.IsNumber())
-                return;
-
             Document = documentObject.Trim();
+
+            if (!Document.IsFilled() || !Document.IsNumber())
+                return;
 
             if (!Validates())
                 return;
@@ -34,15 +34,15 @@ namespace VALUEOBJECT.APPLICATION
 
         public string Document { get; } = string.Empty;
         public string DocumentFormatted { get; } = string.Empty;
-        public bool IsValid { get; private set; }
-        public EnumDocumentType EnumDocumentType { get; }
+        public bool IsValid { get; private set; } = false;
+        public EnumDocumentType EnumDocumentType { get; } = EnumDocumentType.Invalid;
 
         public bool Validates()
         {
             return Document.Length == 11 || Document.Length == 14;
         }
 
-        private static class NaturalPersonDocument
+        private struct NaturalPersonDocument
         {
             public static string Document
             {
@@ -105,7 +105,7 @@ namespace VALUEOBJECT.APPLICATION
             }
         }
 
-        private static class JuridicalPersonDocument
+        private struct JuridicalPersonDocument
         {
             public static string Document
             {

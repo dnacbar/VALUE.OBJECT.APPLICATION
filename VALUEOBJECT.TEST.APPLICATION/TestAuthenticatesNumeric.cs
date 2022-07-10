@@ -30,7 +30,6 @@ namespace VALUEOBJECT.TEST.APPLICATION
             yield return new[] { new AuthenticatesObject(new NumericAuthentication("159678")) };
         }
 
-
         public static IEnumerable<AuthenticatesObject[]> ListOfInvalidNumericAuthWithNoSixNumbers()
         {
             yield return new[] { new AuthenticatesObject(new NumericAuthentication("159")) };
@@ -45,25 +44,31 @@ namespace VALUEOBJECT.TEST.APPLICATION
             yield return new[] { new AuthenticatesObject(new NumericAuthentication("NOVENTA90")) };
         }
 
-        [Theory]
-        [MemberData(nameof(ListOfValidNumericAuth))]
-        public void ToTestPasswordValid(AuthenticatesObject authenticatesObject)
+        [Fact]
+        public void ToTestPasswordValid()
         {
-            Assert.True(authenticatesObject.IsValid);
+            foreach (var item in ListOfValidNumericAuth())
+            {
+                Assert.True(item[0].IsValid);
+            }
         }
 
-        [Theory]
-        [MemberData(nameof(ListOfInvalidNumericAuth))]
-        public void ToTestPasswordInvalid(AuthenticatesObject authenticatesObject)
+        [Fact]
+        public void ToTestPasswordInvalid()
         {
-            Assert.False(authenticatesObject.IsValid);
+            foreach (var item in ListOfInvalidNumericAuth())
+            {
+                Assert.False(item[0].IsValid);
+            }
         }
 
-        [Theory]
-        [MemberData(nameof(ListOfInvalidNumericAuthWithNoSixNumbers))]
-        public void ToTestPasswordInvalidWithNoSixNumbers(AuthenticatesObject authenticatesObject)
+        [Fact]
+        public void ToTestPasswordInvalidWithNoSixNumbers()
         {
-            Assert.False(authenticatesObject.IsValid);
+            foreach (var item in ListOfInvalidNumericAuthWithNoSixNumbers())
+            {
+                Assert.False(item[0].IsValid);
+            }
         }
     }
 }

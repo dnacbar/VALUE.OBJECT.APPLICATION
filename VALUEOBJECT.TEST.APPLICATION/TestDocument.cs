@@ -39,7 +39,6 @@ namespace VALUEOBJECT.TEST.APPLICATION
             Assert.True(documentObject.EnumDocumentType == EnumDocumentType.Invalid);
         }
 
-
         [Fact]
         public void ToTestJuridicalPersonInvalid()
         {
@@ -48,6 +47,5 @@ namespace VALUEOBJECT.TEST.APPLICATION
             Assert.False(documentObject.IsValid);
             Assert.True(documentObject.EnumDocumentType == EnumDocumentType.Invalid);
         }
-
     }
 }

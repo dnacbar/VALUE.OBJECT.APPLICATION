@@ -3,7 +3,7 @@ using VALUEOBJECT.APPLICATION.INTERFACES;
 
 namespace VALUEOBJECT.APPLICATION
 {
-    public sealed class PhoneObject : IPhone
+    public struct PhoneObject : IPhone
     {
         public PhoneObject(string phoneObject)
         {
@@ -15,7 +15,7 @@ namespace VALUEOBJECT.APPLICATION
         }
 
         public string Phone { get; private set; } = string.Empty;
-        public bool IsValid {get; private set; }
+        public bool IsValid { get; private set; } = false;
 
         private bool Validates()
         {

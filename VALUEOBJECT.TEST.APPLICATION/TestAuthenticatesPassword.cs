@@ -31,18 +31,20 @@ namespace VALUEOBJECT.TEST.APPLICATION
             yield return new[] { new AuthenticatesObject(new PasswordAuthentication("ChuX00PanaAzedaL3g4uAmigo", regexObject)) };
         }
 
-        [Theory]
-        [MemberData(nameof(ListOfValidPasswordAuth))]
-        public void ToTestPasswordValid(AuthenticatesObject authenticatesObject)
+        [Fact]
+        public void ToTestPasswordValid()
         {
-            Assert.True(authenticatesObject.IsValid);
+            foreach (var item in ListOfValidPasswordAuth())
+            {
+                Assert.True(item[0].IsValid);
+            }
         }
 
-        [Theory]
-        [MemberData(nameof(ListOfInvalidPasswordAuth))]
-        public void ToTestPasswordInvalid(AuthenticatesObject authenticatesObject)
+        [Fact]
+        public void ToTestPasswordInvalid()
         {
-            Assert.False(authenticatesObject.IsValid);
+            var isValid = new AuthenticatesObject(new PasswordAuthentication("ChuX00PanaAzedaL3g4uAmigo", new Regex(regexPattern))).IsValid;
+            Assert.False(isValid);
         }
     }
 }
